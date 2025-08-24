@@ -7,7 +7,7 @@ The bot is free to use and does **not** require any subscriptions to other chann
 
 ## ✨ Features
 - 📥 Download videos from **YouTube**, **TikTok**, and **Instagram**
-- ⚡ Fast, ad-free, and no subscriptions required
+- ⚡ Fast(almost, will look forward to make it faster), ad-free, and no subscriptions required
 - 🛠️ Planned support for additional platforms
 
 ## ⚠️ IMPORTANT NOTE:
