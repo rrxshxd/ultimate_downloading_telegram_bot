@@ -9,16 +9,16 @@ load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Привет! Пришли мне ссылку на YouTube, TikTok, Instagram и я скачаю тебе видео.")
+    await update.message.reply_text("Hello! Send me a link to YouTube, TikTok or Instagram video and I'll download it")
 
 async def handle_link(update: Update, context: ContextTypes.DEFAULT_TYPE):
     url = update.message.text.strip()
 
     if not any(x in url for x in ["youtube.com", "youtu.be", "tiktok.com", "instagram.com"]):
-        await update.message.reply_text("Это не похоже на YouTube, TikTok или Instagram-ссылку.")
+        await update.message.reply_text("This doesn't look like a correct link. Please, provide YouTube, TikTok or Instagram link.")
         return
 
-    await update.message.reply_text("Скачиваю видео, подожди...")
+    await update.message.reply_text("Downloading video...")
 
     try:
         ydl_opts = {
@@ -38,7 +38,7 @@ async def handle_link(update: Update, context: ContextTypes.DEFAULT_TYPE):
         os.remove(filename)
 
     except Exception as e:
-        await update.message.reply_text(f"Произошла ошибка: {e}")
+        await update.message.reply_text(f"Error: {e}")
 
 def main():
     app = Application.builder().token(BOT_TOKEN).build()
