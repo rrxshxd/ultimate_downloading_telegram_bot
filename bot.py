@@ -32,7 +32,7 @@ ALLOWED_HOSTS = {
     "instagram.com", "www.instagram.com",
     "x.com", "www.x.com",
     "twitter.com", "www.twitter.com",
-    "pin.it", "www.pin.it",
+    "pinterest.com", "www.pinterest.com", "pin.it", "www.pin.it",
 }
 
 
