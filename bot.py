@@ -50,7 +50,7 @@ def pick_format(url: str) -> str:
         return "b[ext=mp4]/bv*+ba/b"
 
     if "tiktok.com" in host:
-        return "bv*[ext=mp4][height<=720]+ba[ext=m4a]/b[ext=mp4]/b"
+        return "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best"
 
     return "bv*+ba/b"
 
