@@ -50,14 +50,15 @@ def download_video(url: str, out_dir: str) -> str:
 
     ydl_opts = {
         # Reliable selector that tends to yield mp4
-        "format": "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best",
+        "format": "best/bestvideo+bestaudio",
         "outtmpl": outtmpl,
         "noplaylist": True,
         "merge_output_format": "mp4",
 
         # Keep logs clean; flip quiet=False while debugging
-        "quiet": True,
-        "no_warnings": True,
+        "quiet": False,
+        "no_warnings": False,
+        "verbose": True,
 
         # Network timeout
         "socket_timeout": 60,
