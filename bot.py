@@ -43,6 +43,16 @@ def     is_allowed_url(url: str) -> bool:
     except Exception:
         return False
 
+def pick_format(url: str) -> str:
+    host = (urlparse(url.strip()).hostname or "").lower()
+
+    if host.endswith("pin.it") or "pinterest.com" in host:
+        return "b[ext=mp4]/bv*+ba/b"
+
+    if "tiktok.com" in host:
+        return "bv*[ext=mp4][height<=720]+ba[ext=m4a]/b[ext=mp4]/b"
+
+    return "bv*+ba/b"
 
 def download_video(url: str, out_dir: str) -> str:
     base = f"video_{uuid.uuid4().hex}"
@@ -50,7 +60,7 @@ def download_video(url: str, out_dir: str) -> str:
 
     ydl_opts = {
         # Reliable selector that tends to yield mp4
-        "format": "best/bestvideo+bestaudio",
+        "format": pick_format(url),
         "outtmpl": outtmpl,
         "noplaylist": True,
         "merge_output_format": "mp4",
