@@ -8,6 +8,7 @@ from urllib.parse import urlparse
 from telegram import Update
 from telegram.constants import ChatAction
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
+from telegram.request import HTTPXRequest
 from dotenv import load_dotenv
 import yt_dlp
 
@@ -60,7 +61,7 @@ def download_video(url: str, out_dir: str) -> str:
         "no_warnings": True,
 
         # Network timeout
-        "socket_timeout": 20,
+        "socket_timeout": 60,
 
         # Headers can help on some platforms
         "http_headers": {
@@ -142,7 +143,14 @@ def main():
     if not BOT_TOKEN:
         raise RuntimeError("BOT_TOKEN is missing. Set it in the environment or in your .env file.")
 
-    app = Application.builder().token(BOT_TOKEN).build()
+    request = HTTPXRequest(
+        connect_timeout=30,
+        read_timeout=300,
+        write_timeout=300,
+        pool_timeout=30,
+    )
+
+    app = Application.builder().token(BOT_TOKEN).request(request).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_link))
 
