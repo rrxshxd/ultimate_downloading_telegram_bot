@@ -32,15 +32,14 @@ ALLOWED_HOSTS = {
     "instagram.com", "www.instagram.com",
     "x.com", "www.x.com",
     "twitter.com", "www.twitter.com",
-    "pinterest.com", "www.pinterest.com", "pin.it", "www.pin.it",
+    "pinterest.com", "www.pinterest.com", "pin.it", "www.pin.it", "pinimg.com",
 }
 
 
-def is_allowed_url(url: str) -> bool:
+def     is_allowed_url(url: str) -> bool:
     try:
-        u = urlparse(url.strip())
-        host = (u.hostname or "").lower()
-        return host in ALLOWED_HOSTS
+        host = (urlparse(url.strip()).hostname or "").lower()
+        return any(host == d or host.endswith("." + d) for d in ALLOWED_HOSTS)
     except Exception:
         return False
 
