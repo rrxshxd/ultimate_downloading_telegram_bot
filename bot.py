@@ -27,7 +27,7 @@ DOWNLOAD_SEMAPHORE = asyncio.Semaphore(3)  # tune 2-4 for most VPS setups
 # --- Safer domain allowlist ---
 ALLOWED_HOSTS = {
     "youtube.com", "www.youtube.com", "youtu.be",
-    "tiktok.com", "www.tiktok.com", "vm.tiktok.com", "vt.tiktok.com"
+    "tiktok.com", "www.tiktok.com", "vm.tiktok.com", "vt.tiktok.com",
     "instagram.com", "www.instagram.com",
     "x.com", "www.x.com",
     "twitter.com", "www.twitter.com",
